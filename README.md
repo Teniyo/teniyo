@@ -53,4 +53,4 @@ class App extends Teniyo {
 
 ## Output
 
-<img src="doc/simple-output.webp" width=250>
+<img src="https://github.com/Teniyo/teniyo/raw/main/doc/simple-output.webp" width=250>
