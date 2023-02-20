@@ -1,11 +1,11 @@
 // ignore_for_file: duplicate_import
 
-import 'dart:io';
 import '../property/assets_manager.dart';
 import '../property/color.dart';
 import '../property/page.dart';
 import '../property/widget.dart';
 import 'package:teniyo/src/widgets/container.dart';
+import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'dart:io';
 import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'dart:html' as html;
 import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'dart:js';
 import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart';

@@ -48,3 +48,19 @@ class window{
 }
 class TextAreaElement{}
 class InputElement{}
+
+class Directory{
+  Directory(String path);
+  existsSync(){}
+  deleteSync({recursive}){}
+  static dynamic current;
+}
+class Platform{
+  static dynamic script;
+}
+class ProcessResult{
+  int exitCode = 0;
+}
+class Process{
+  static runSync(String cmd, List args, {runInShell}){}
+}
