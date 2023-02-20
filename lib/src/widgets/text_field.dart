@@ -1,3 +1,5 @@
+// ignore_for_file: duplicate_import
+
 import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'dart:html';
 import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'dart:js';
 
