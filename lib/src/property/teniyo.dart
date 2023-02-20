@@ -1,5 +1,6 @@
-import 'dart:io';
+// ignore_for_file: duplicate_import
 
+import 'dart:io';
 import 'assets_manager.dart';
 import 'color.dart';
 import 'page.dart';
@@ -8,7 +9,7 @@ import 'package:teniyo/src/widgets/container.dart';
 import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'dart:html' as html;
 import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'dart:js';
 import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart';
-import 'package:teniyo/assets/main.dart' as BuildAssets;
+import 'package:teniyo/assets/main.dart' as build_assets;
 
 class Teniyo{
   Window window = Window(title: 'Teniyo');
@@ -61,7 +62,7 @@ class Teniyo{
       if (Directory(buildPath).existsSync())
         Directory(buildPath).deleteSync(recursive: true);
 
-      await BuildAssets.putAssets(buildPath);
+      await build_assets.putAssets(buildPath);
       print('Assets copied to $buildPath');
       
       ProcessResult process = Process.runSync('dart', ["compile", "js", mainFile, "-o", 'build\\$mainFileJs'], runInShell: true);

@@ -4,25 +4,15 @@ import 'package:teniyo/src/lib/css.dart';
 import 'package:teniyo/src/lib/html.dart';
 import 'package:teniyo/src/property/widget.dart';
 
-enum _ImageType { asset, network }
 class Image extends Widget{
   final String path;
   double? width, height;
   BoxFit? fit = BoxFit.fill;
   BorderRadius? borderRadius;
-  late _ImageType type;
   
-  Image.asset(this.path, {this.width, this.height, this.fit, this.borderRadius}) {
-    type = _ImageType.asset;
-  }
+  Image.asset(this.path, {this.width, this.height, this.fit, this.borderRadius});
 
-  Image.network(this.path, {this.width, this.height, this.fit, this.borderRadius}) {
-    type = _ImageType.network;
-  }
-
-  // Image.file(this.path, {this.width, this.height, this.fit, this.borderRadius}) {
-  //   type = _ImageType.file;
-  // }
+  Image.network(this.path, {this.width, this.height, this.fit, this.borderRadius});
 
   @override
   Html build(){

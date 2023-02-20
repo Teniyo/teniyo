@@ -81,6 +81,9 @@ class Color {
     return value == typedOther.value;
   }
 
+  @override
+  int get hashCode => value.hashCode;
+
   String toHex() {
     String red = this.red.toRadixString(16);
     String green = this.green.toRadixString(16);

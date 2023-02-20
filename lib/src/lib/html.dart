@@ -105,9 +105,8 @@ class Html{
     attributes.changeKey("class", "className");
     attributes.changeKey("onclick", "onClick");
     attributes["style"] = style.renderForReact();
-    // copy attributes to _attributes
-    Map _attributes = Map.from(attributes);
-    _attributes.forEach((key, value) {
+    
+    Map.from(attributes).forEach((key, value) {
       if (key[0]=='@'){
         if (value) attributes[key.substring(1)] = '-';
         attributes.remove(key);
