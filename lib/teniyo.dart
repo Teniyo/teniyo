@@ -9,7 +9,7 @@ export 'src/property/box_fit.dart';
 export 'src/property/color.dart';
 export 'src/property/page.dart';
 export 'src/property/scroll_axis.dart';
-export 'src/property/teniyo.dart';
+export 'src/lib/teniyo.dart';
 export 'src/property/text_align.dart';
 export 'src/property/text_field_variant.dart';
 export 'src/property/edge_insets.dart';
