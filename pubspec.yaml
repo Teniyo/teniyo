@@ -3,6 +3,7 @@ description: A modern and powerful framework designed for building web applicati
 version: 0.0.3-dev
 homepage: https://teniyo.ir
 repository: https://github.com/Teniyo/teniyo
+issue_tracker: https://github.com/Teniyo/teniyo/issues
 
 environment:
   sdk: '>=2.17.6 <3.0.0'
