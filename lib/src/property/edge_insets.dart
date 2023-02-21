@@ -4,13 +4,6 @@ class EdgeInsets {
   final double right;
   final double bottom;
 
-  // EdgeInsets({
-  //   this.left = 0.0,
-  //   this.top = 0.0,
-  //   this.right = 0.0,
-  //   this.bottom = 0.0,
-  // });
-
   EdgeInsets.fromLTRB(
     this.left,
     this.top,

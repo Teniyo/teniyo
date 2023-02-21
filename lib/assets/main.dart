@@ -1,5 +1,4 @@
-import 'dart:io';
-import 'dart:isolate';
+import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart';
 
 Future<void> putAssets(String buildPath) async {
   var packageUri = Uri.parse("package:teniyo/");

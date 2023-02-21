@@ -1,8 +1,4 @@
-// ignore_for_file: duplicate_import
-
-import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'dart:html';
-import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'dart:js';
-
+import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart';
 import 'package:teniyo/src/lib/css.dart';
 import 'package:teniyo/src/lib/html.dart';
 import 'package:teniyo/src/property/text_align.dart';

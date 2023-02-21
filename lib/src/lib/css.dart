@@ -24,7 +24,6 @@ class Style{
   }
 
   Map renderForReact(){
-    // convert key to react-key
     var styles = {};
     this.styles.forEach((key, value) {
       // convert name-name to nameName

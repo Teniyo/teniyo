@@ -1,8 +1,8 @@
 import 'css.dart';
 import 'extension.dart';
 import 'tools.dart';
-import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'dart:html' as html;
-import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'dart:js';
+import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart';
+import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart' as html;
 
 class Html{
   final String tag;
@@ -37,6 +37,11 @@ class Html{
           value();
         });
       }
+      else if (key.toLowerCase() == "onchange"){
+        element.onChange.listen((event) {
+          value(true);
+        });
+      }
       else{
         element.setAttribute(key, value);
       }
@@ -53,9 +58,7 @@ class Html{
     else if(children is String){
       element.appendText(children);
     }
-    else if (children == null) {
-      // do nothing
-    }
+    else if (children == null) {}
     else{
       throw Exception("Invalid children type : $children / ${children.runtimeType}");
     }
@@ -100,7 +103,6 @@ class Html{
       throw Exception("Invalid children type : $children / ${children.runtimeType}");
     }
     
-    // convert class in attributes to className
     Map attributes = Map.from(this.attributes);
     attributes.changeKey("class", "className");
     attributes.changeKey("onclick", "onClick");
