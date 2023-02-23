@@ -123,7 +123,7 @@ class MaterialColor extends Color{
 
 class Colors{
 
-  static final Color red = MaterialColor(
+  static final MaterialColor red = MaterialColor(
     0xFFF44336,
     {
       50: Color(0xFFFFEBEE),
@@ -139,7 +139,7 @@ class Colors{
     }
   );
 
-  static final Color pink = MaterialColor(
+  static final MaterialColor pink = MaterialColor(
     0xFFE91E63,
     {
       50: Color(0xFFFCE4EC),
@@ -155,7 +155,7 @@ class Colors{
     }
   );
 
-  static final Color purple = MaterialColor(
+  static final MaterialColor purple = MaterialColor(
     0xFF9C27B0,
     {
       50: Color(0xFFF3E5F5),
@@ -171,7 +171,7 @@ class Colors{
     }
   );
 
-  static final Color deepPurple = MaterialColor(
+  static final MaterialColor deepPurple = MaterialColor(
     0xFF673AB7,
     {
       50: Color(0xFFEDE7F6),
@@ -187,7 +187,7 @@ class Colors{
     }
   );
 
-  static final Color indigo = MaterialColor(
+  static final MaterialColor indigo = MaterialColor(
     0xFF3F51B5,
     {
       50: Color(0xFFE8EAF6),
@@ -203,7 +203,7 @@ class Colors{
     }
   );
 
-  static final Color blue = MaterialColor(
+  static final MaterialColor blue = MaterialColor(
     0xFF2196F3,
     {
       50: Color(0xFFE3F2FD),
@@ -219,7 +219,7 @@ class Colors{
     }
   );
 
-  static final Color lightBlue = MaterialColor(
+  static final MaterialColor lightBlue = MaterialColor(
     0xFF03A9F4,
     {
       50: Color(0xFFE1F5FE),
@@ -235,7 +235,7 @@ class Colors{
     }
   );
 
-  static final Color cyan = MaterialColor(
+  static final MaterialColor cyan = MaterialColor(
     0xFF00BCD4,
     {
       50: Color(0xFFE0F7FA),
@@ -251,7 +251,7 @@ class Colors{
     }
   );
 
-  static final Color teal = MaterialColor(
+  static final MaterialColor teal = MaterialColor(
     0xFF009688,
     {
       50: Color(0xFFE0F2F1),
@@ -267,7 +267,7 @@ class Colors{
     }
   );
 
-  static final Color green = MaterialColor(
+  static final MaterialColor green = MaterialColor(
     0xFF4CAF50,
     {
       50: Color(0xFFE8F5E9),
@@ -283,7 +283,7 @@ class Colors{
     }
   );
 
-  static final Color lightGreen = MaterialColor(
+  static final MaterialColor lightGreen = MaterialColor(
     0xFF8BC34A,
     {
       50: Color(0xFFF1F8E9),
@@ -299,7 +299,7 @@ class Colors{
     }
   );
 
-  static final Color lime = MaterialColor(
+  static final MaterialColor lime = MaterialColor(
     0xFFCDDC39,
     {
       50: Color(0xFFF9FBE7),
@@ -315,7 +315,7 @@ class Colors{
     }
   );
 
-  static final Color yellow = MaterialColor(
+  static final MaterialColor yellow = MaterialColor(
     0xFFFFEB3B,
     {
       50: Color(0xFFFFFDE7),
@@ -331,7 +331,7 @@ class Colors{
     }
   );
 
-  static final Color amber = MaterialColor(
+  static final MaterialColor amber = MaterialColor(
     0xFFFFC107,
     {
       50: Color(0xFFFFF8E1),
@@ -347,7 +347,7 @@ class Colors{
     }
   );
 
-  static final Color orange = MaterialColor(
+  static final MaterialColor orange = MaterialColor(
     0xFFFF9800,
     {
       50: Color(0xFFFFF3E0),
@@ -363,7 +363,7 @@ class Colors{
     }
   );
 
-  static final Color deepOrange = MaterialColor(
+  static final MaterialColor deepOrange = MaterialColor(
     0xFFFF5722,
     {
       50: Color(0xFFFBE9E7),
@@ -379,7 +379,7 @@ class Colors{
     }
   );
 
-  static final Color brown = MaterialColor(
+  static final MaterialColor brown = MaterialColor(
     0xFF795548,
     {
       50: Color(0xFFEFEBE9),
@@ -395,7 +395,7 @@ class Colors{
     }
   );
 
-  static final Color grey = MaterialColor(
+  static final MaterialColor grey = MaterialColor(
     0xFF9E9E9E,
     {
       50: Color(0xFFFAFAFA),
@@ -411,7 +411,7 @@ class Colors{
     }
   );
 
-  static final Color blueGrey = MaterialColor(
+  static final MaterialColor blueGrey = MaterialColor(
     0xFF607D8B,
     {
       50: Color(0xFFECEFF1),
