@@ -6,8 +6,7 @@ import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:ten
 import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart' as html;
 
 class Window{
-  int width;
-  int height;
+  double width, height;
   final String title;
   final String? icon;
 
@@ -19,6 +18,8 @@ class Window{
   }){
     setTitle(title);
     setIcon("teniyo_assets/icons/teniyo.svg");
+    height = html.window.innerHeight ?? 0;
+    width = html.window.innerWidth ?? 0;
   }
 
   void setTitle(String title){

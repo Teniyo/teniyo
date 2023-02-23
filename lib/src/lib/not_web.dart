@@ -48,7 +48,7 @@ class WindowOnResize{
 }
 class window{
   static WindowOnResize onResize = WindowOnResize();
-  static dynamic innerWidth, innerHeight;
+  static double? innerWidth, innerHeight;
 }
 class TextAreaElement{}
 class InputElement{

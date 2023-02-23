@@ -26,6 +26,7 @@ class Teniyo{
     html.window.onResize.listen((event) {
       window.height = html.window.innerHeight ?? 0;
       window.width = html.window.innerWidth ?? 0;
+      setState();
     });
 
     page = Page(
