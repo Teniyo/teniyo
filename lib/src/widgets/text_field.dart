@@ -18,7 +18,7 @@ class TextField extends Widget{
   bool readOnly;
   bool multiline;
   TextAlign textAlign = TextAlign.justify;
-  void Function(String)?onChanged;
+  Function(String)?onChanged;
   TextFieldVariant variant;
 
   TextField({

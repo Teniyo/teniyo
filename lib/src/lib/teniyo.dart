@@ -40,7 +40,7 @@ class Teniyo{
     });
   }
   void initState(Page page){}
-  void setState([void Function()? function]){
+  void setState([Function()? function]){
     if (function!=null) function();
     page.update();
   }
