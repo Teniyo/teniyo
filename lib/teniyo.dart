@@ -33,3 +33,6 @@ export 'src/widgets/spacer.dart';
 export 'src/widgets/stack.dart';
 export 'src/widgets/text.dart';
 export 'src/widgets/text_field.dart';
+export 'src/widgets/radio.dart';
+export 'src/widgets/drop_down_button.dart';
+export 'src/widgets/drop_down_menu_item.dart';
