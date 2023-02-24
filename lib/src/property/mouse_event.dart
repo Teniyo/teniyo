@@ -2,11 +2,11 @@ import 'package:teniyo/src/lib/html.dart';
 import 'package:teniyo/src/property/widget.dart';
 import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart';
 
-class MouseRegion extends Widget{
+class MouseEvent extends Widget{
   final Function()? onEnter, onHover, onExit, onClick;
   final Widget child;
 
-  MouseRegion({    
+  MouseEvent({    
     this.onEnter,
     this.onHover,
     this.onExit,
