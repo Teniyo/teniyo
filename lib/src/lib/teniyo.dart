@@ -24,8 +24,8 @@ class Teniyo{
     assetsManager = AssetsManager(teniyoAssetsRoot);
 
     html.window.onResize.listen((event) {
-      window.height = html.window.innerHeight ?? 0;
-      window.width = html.window.innerWidth ?? 0;
+      window.height = html.window.innerHeight?.toDouble() ?? 0;
+      window.width = html.window.innerWidth?.toDouble() ?? 0;
       setState();
     });
 
@@ -69,8 +69,10 @@ class Teniyo{
       print("Build successfull, open $buildPath\\index.html");
 
     }
-    page.childBuilder = ()=>build(page);
-    page.update();
+    else{
+      page.childBuilder = ()=>build(page);
+      page.update();
+    }
   }
 }
 

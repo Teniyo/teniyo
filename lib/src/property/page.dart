@@ -18,8 +18,8 @@ class Window{
   }){
     setTitle(title);
     setIcon("teniyo_assets/icons/teniyo.svg");
-    height = html.window.innerHeight ?? 0;
-    width = html.window.innerWidth ?? 0;
+    height = html.window.innerHeight?.toDouble() ?? 0;
+    width = html.window.innerWidth?.toDouble() ?? 0;
   }
 
   void setTitle(String title){

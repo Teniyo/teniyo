@@ -41,7 +41,7 @@ class TextButton extends Widget{
       tag: "Button",
       children: child.build(),
       attributes: {
-        "onclick": onClick,
+        "onClick": onClick,
         "variant": "text",
         "@disabled": disabled,
         "sx": {
@@ -91,7 +91,7 @@ class ElevatedButton extends Widget{
       tag: "Button",
       children: child.build(),
       attributes: {
-        "onclick": onClick,
+        "onClick": onClick,
         "variant": "contained",
         "@disabled": disabled,
         "sx": {
@@ -154,7 +154,7 @@ class OutlineButton extends Widget{
       tag: "Button",
       children: child.build(),
       attributes: {
-        "onclick": onClick,
+        "onClick": onClick,
         "variant": "outlined",
         "@disabled": disabled,
         "sx": {

@@ -31,21 +31,7 @@ class Html{
     html.Element element = html.Element.tag(tag);
     element.style.cssText = style.render();
 
-    attributes.forEach((key, value) {
-      if (value is Function() && key == "onclick") {
-        element.onClick.listen((event) {
-          value();
-        });
-      }
-      else if (key.toLowerCase() == "onchange"){
-        element.onChange.listen((event) {
-          value(true);
-        });
-      }
-      else{
-        element.setAttribute(key, value);
-      }
-    });
+    attributes.forEach((key, value) => element.setAttribute(key, value));
 
     if(children is List<Html>){
       children.forEach((child) {
@@ -105,7 +91,7 @@ class Html{
     
     Map attributes = Map.from(this.attributes);
     attributes.changeKey("class", "className");
-    attributes.changeKey("onclick", "onClick");
+    // attributes.changeKey("onclick", "onClick");
     attributes["style"] = style.renderForReact();
     
     Map.from(attributes).forEach((key, value) {
@@ -117,7 +103,11 @@ class Html{
     JsObject attrArray = JsObject.jsify(attributes);
 
     dynamic tagForRender;
-    if (tag[0] == tag[0].toUpperCase()) tagForRender = mui[tag];
+    if (tag.contains(".") && tag.split('.').length == 2){
+      var tagSplit = tag.split('.');
+      tagForRender = context[tagSplit[0]][tagSplit[1]];
+    }
+    else if (tag[0] == tag[0].toUpperCase()) tagForRender = mui[tag];
     else tagForRender = tag;
 
     return react.callMethod('createElement', [tagForRender, attrArray, ...children]);
