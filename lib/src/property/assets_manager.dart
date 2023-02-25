@@ -1,5 +1,5 @@
-import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'dart:html' as html;
-import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'dart:js';
+import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart';
+import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart' as html;
 
 class AssetsManager{
   Map<String,String> fonts = {};

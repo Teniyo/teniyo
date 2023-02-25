@@ -1,15 +1,10 @@
-// ignore_for_file: duplicate_import
-
-import 'dart:io';
-import 'assets_manager.dart';
-import 'color.dart';
-import 'page.dart';
-import 'widget.dart';
+import '../property/assets_manager.dart';
+import '../property/color.dart';
+import '../property/page.dart';
+import '../property/widget.dart';
 import 'package:teniyo/src/widgets/container.dart';
-import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'dart:html' as html;
-import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'dart:js';
 import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart';
-import 'package:teniyo/assets/main.dart' as build_assets;
+import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart' as html;
 
 class Teniyo{
   Window window = Window(title: 'Teniyo');
@@ -29,8 +24,9 @@ class Teniyo{
     assetsManager = AssetsManager(teniyoAssetsRoot);
 
     html.window.onResize.listen((event) {
-      window.height = html.window.innerHeight ?? 0;
-      window.width = html.window.innerWidth ?? 0;
+      window.height = html.window.innerHeight?.toDouble() ?? 0;
+      window.width = html.window.innerWidth?.toDouble() ?? 0;
+      setState();
     });
 
     page = Page(
@@ -44,7 +40,7 @@ class Teniyo{
     });
   }
   void initState(Page page){}
-  void setState([void Function()? function]){
+  void setState([Function()? function]){
     if (function!=null) function();
     page.update();
   }
@@ -62,7 +58,7 @@ class Teniyo{
       if (Directory(buildPath).existsSync())
         Directory(buildPath).deleteSync(recursive: true);
 
-      await build_assets.putAssets(buildPath);
+      await putAssets(buildPath);
       print('Assets copied to $buildPath');
       
       ProcessResult process = Process.runSync('dart', ["compile", "js", mainFile, "-o", 'build\\$mainFileJs'], runInShell: true);
@@ -73,8 +69,10 @@ class Teniyo{
       print("Build successfull, open $buildPath\\index.html");
 
     }
-    page.childBuilder = ()=>build(page);
-    page.update();
+    else{
+      page.childBuilder = ()=>build(page);
+      page.update();
+    }
   }
 }
 

@@ -1,8 +1,8 @@
 import 'css.dart';
 import 'extension.dart';
 import 'tools.dart';
-import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'dart:html' as html;
-import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'dart:js';
+import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart';
+import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart' as html;
 
 class Html{
   final String tag;
@@ -31,16 +31,7 @@ class Html{
     html.Element element = html.Element.tag(tag);
     element.style.cssText = style.render();
 
-    attributes.forEach((key, value) {
-      if (value is Function() && key == "onclick") {
-        element.onClick.listen((event) {
-          value();
-        });
-      }
-      else{
-        element.setAttribute(key, value);
-      }
-    });
+    attributes.forEach((key, value) => element.setAttribute(key, value));
 
     if(children is List<Html>){
       children.forEach((child) {
@@ -53,9 +44,7 @@ class Html{
     else if(children is String){
       element.appendText(children);
     }
-    else if (children == null) {
-      // do nothing
-    }
+    else if (children == null) {}
     else{
       throw Exception("Invalid children type : $children / ${children.runtimeType}");
     }
@@ -100,10 +89,9 @@ class Html{
       throw Exception("Invalid children type : $children / ${children.runtimeType}");
     }
     
-    // convert class in attributes to className
     Map attributes = Map.from(this.attributes);
     attributes.changeKey("class", "className");
-    attributes.changeKey("onclick", "onClick");
+    // attributes.changeKey("onclick", "onClick");
     attributes["style"] = style.renderForReact();
     
     Map.from(attributes).forEach((key, value) {
@@ -115,7 +103,11 @@ class Html{
     JsObject attrArray = JsObject.jsify(attributes);
 
     dynamic tagForRender;
-    if (tag[0] == tag[0].toUpperCase()) tagForRender = mui[tag];
+    if (tag.contains(".") && tag.split('.').length == 2){
+      var tagSplit = tag.split('.');
+      tagForRender = context[tagSplit[0]][tagSplit[1]];
+    }
+    else if (tag[0] == tag[0].toUpperCase()) tagForRender = mui[tag];
     else tagForRender = tag;
 
     return react.callMethod('createElement', [tagForRender, attrArray, ...children]);

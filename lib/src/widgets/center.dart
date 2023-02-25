@@ -16,6 +16,7 @@ class Center extends Widget{
         "align-items": "center",
         "justify-content": "center",
         "align-self": "center",
+        "height": "-webkit-fill-available",
       }),
       children: child.build(),
     );

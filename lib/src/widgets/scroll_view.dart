@@ -1,6 +1,4 @@
-import 'dart:async';
-import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'dart:js';
-
+import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart';
 import 'package:teniyo/src/lib/css.dart';
 import 'package:teniyo/src/lib/html.dart';
 import 'package:teniyo/src/property/scroll_axis.dart';
@@ -24,9 +22,8 @@ class ScrollView extends Widget{
         "onScroll": JsFunction.withThis((self,JsObject arg){
           h!.element!.classes.add("teniyo-scroll");
           if (h.data.containsKey('scrollAutoHidden')) h.data['scrollAutoHidden']!.cancel();
-          h.data['scrollAutoHidden'] = Timer(const Duration(seconds: 1), () {
+          h.data['scrollAutoHidden'] = Future.delayed(const Duration(seconds: 1), () {
             h!.element?.classes.remove("teniyo-scroll");
-            
           });
         })
       },

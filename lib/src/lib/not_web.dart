@@ -1,10 +1,15 @@
 // ignore_for_file: camel_case_types
 
+export 'dart:io';
+export 'package:teniyo/assets/main.dart';
+export 'dart:isolate';
+
 const bool isWeb = false;
+
 class Element{
   append(Element e){}
   appendText(String s){}
-  dynamic style, onClick, classes;
+  dynamic style, onClick, classes, onChange;
   static tag(String s){}
   setAttribute(String key, dynamic value){}
   querySelector(String s){return Element();}
@@ -30,7 +35,6 @@ class JsFunction{
 }
 
 class _context{
-  // define [] operator
   JsObject operator [](String name){
     return JsObject();
   }
@@ -44,7 +48,9 @@ class WindowOnResize{
 }
 class window{
   static WindowOnResize onResize = WindowOnResize();
-  static dynamic innerWidth, innerHeight;
+  static int? innerWidth, innerHeight;
 }
 class TextAreaElement{}
-class InputElement{}
+class InputElement{
+  bool checked = false;
+}

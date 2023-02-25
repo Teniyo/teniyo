@@ -5,7 +5,7 @@ import 'package:teniyo/src/lib/css.dart';
 import 'package:teniyo/src/property/edge_insets.dart';
 import 'package:teniyo/src/lib/html.dart';
 import 'package:teniyo/src/property/widget.dart';
-import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'dart:js';
+import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart';
 
 class TextButton extends Widget{
   final Widget child;
@@ -41,7 +41,7 @@ class TextButton extends Widget{
       tag: "Button",
       children: child.build(),
       attributes: {
-        "onclick": onClick,
+        "onClick": onClick,
         "variant": "text",
         "@disabled": disabled,
         "sx": {
@@ -91,7 +91,7 @@ class ElevatedButton extends Widget{
       tag: "Button",
       children: child.build(),
       attributes: {
-        "onclick": onClick,
+        "onClick": onClick,
         "variant": "contained",
         "@disabled": disabled,
         "sx": {
@@ -154,7 +154,7 @@ class OutlineButton extends Widget{
       tag: "Button",
       children: child.build(),
       attributes: {
-        "onclick": onClick,
+        "onClick": onClick,
         "variant": "outlined",
         "@disabled": disabled,
         "sx": {
@@ -165,7 +165,6 @@ class OutlineButton extends Widget{
           "&:hover": {
             "borderColor": secondaryColor.toHex(),
             "backgroundColor": secondaryColor.withAlpha(10).toHex()
-            // "backgroundColor": "transparent !important",
           }
         }
       },
