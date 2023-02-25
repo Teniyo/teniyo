@@ -32,7 +32,8 @@ class Teniyo{
     page = Page(
       window: window,
       pageElement: html.document.querySelector('teniyo')!,
-      teniyoAssets: assetsManager
+      teniyoAssets: assetsManager,
+      childBuilder: ()=>build(page),
     );
 
     html.document.onContextMenu.listen((event) {
@@ -70,7 +71,6 @@ class Teniyo{
 
     }
     else{
-      page.childBuilder = ()=>build(page);
       page.update();
     }
   }

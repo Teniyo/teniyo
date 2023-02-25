@@ -1,4 +1,4 @@
-
+import 'package:teniyo/src/lib/teniyo.dart';
 import 'assets_manager.dart';
 import 'package:teniyo/src/lib/html.dart';
 import 'widget.dart';
@@ -42,7 +42,8 @@ class Page{
   final Window window;
   final html.Element pageElement;
   final AssetsManager teniyoAssets;
-  late Widget Function() childBuilder;
+  Widget Function() childBuilder;
+  List<Widget Function()> childBuilderHistory = [];
   Function? disposeWidget;
 
   html.Element teniyoTag = html.querySelector('teniyo')!;
@@ -50,8 +51,8 @@ class Page{
   JsObject react = context['React'];
   JsObject reactDom = context['ReactDOM'];
   
-
-  Page({required this.window, required this.pageElement, required this.teniyoAssets}){
+  Page({required this.window, required this.pageElement, required this.teniyoAssets, required this.childBuilder}){
+    childBuilderHistory.add(childBuilder);
     reactRoot = reactDom.callMethod('createRoot', [teniyoTag]);
   }
 
@@ -65,5 +66,17 @@ class Page{
 
     JsObject pageResponse = child.build().elementToReact();
     reactRoot.callMethod('render', [pageResponse]);
+  }
+
+  void go(Teniyo page){
+    childBuilder = () => page.build(this);
+    childBuilderHistory.add(childBuilder);
+    update();
+  }
+
+  void back(){
+    childBuilderHistory.removeLast();
+    childBuilder = childBuilderHistory.last;
+    update();
   }
 }
