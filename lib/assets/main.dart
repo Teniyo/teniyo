@@ -5,12 +5,16 @@ Future<void> putAssets(String buildPath) async {
   var libPath = File.fromUri((await Isolate.resolvePackageUri(packageUri))!).path;
   var mainFolder = "${libPath}assets\\main";
   var teniyoAssets = "${libPath}assets\\teniyo_assets";
+  var assets = "${Directory.current.path}\\assets";
   
   Directory(buildPath).createSync();
   Directory("$buildPath\\teniyo_assets").createSync();
 
   copyFolder(teniyoAssets, "$buildPath\\teniyo_assets\\");
   copyFolder(mainFolder, buildPath);
+
+  if (Directory(assets).existsSync())
+    copyFolder(assets, "$buildPath\\assets");
 }
 
 void copyFolder(String path, String pastePath){
