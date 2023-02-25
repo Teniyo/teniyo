@@ -38,3 +38,4 @@ export 'src/widgets/drop_down_button.dart';
 export 'src/widgets/drop_down_menu_item.dart';
 export 'src/widgets/slider.dart';
 export 'src/widgets/switch.dart';
+export 'src/widgets/padding.dart';
