@@ -9,6 +9,7 @@ Future<void> putAssets(String buildPath) async {
   
   Directory(buildPath).createSync();
   Directory("$buildPath\\teniyo_assets").createSync();
+  Directory("$buildPath\\assets").createSync();
 
   copyFolder(teniyoAssets, "$buildPath\\teniyo_assets\\");
   copyFolder(mainFolder, buildPath);
