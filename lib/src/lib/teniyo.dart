@@ -15,6 +15,7 @@ class Teniyo{
   late AssetsManager assetsManager;
 
   Teniyo(){
+    if (!isWeb) return;
     initApp();
     initState(page);
   }
