@@ -1,6 +1,8 @@
-# 0.0.3-dev
+# 0.1.0-dev
 
-- added Material Colors
+- added Switch, Slider, DropDownButton, MouseEvent, Checkbox and Radio widgets
+- added Material colors
+- fixed some bugs
 
 # 0.0.2-dev
 
