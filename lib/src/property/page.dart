@@ -75,6 +75,8 @@ class Page{
   }
 
   void back(){
+    if (childBuilderHistory.length == 1) return;
+
     childBuilderHistory.removeLast();
     childBuilder = childBuilderHistory.last;
     update();
