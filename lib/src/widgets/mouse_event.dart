@@ -16,21 +16,21 @@ class MouseEvent extends Widget{
 
   @override
   Html build(){
-    JsFunction onEnter = JsFunction.withThis((self){
+    JsFunction onEnter = JsFunction.withThis((self, e){
       this.onEnter?.call();
     });
-    JsFunction onHover = JsFunction.withThis((self){
+    JsFunction onHover = JsFunction.withThis((self, e){
       this.onHover?.call();
     });
-    JsFunction onExit = JsFunction.withThis((self){
+    JsFunction onExit = JsFunction.withThis((self, e){
       this.onExit?.call();
     });
-    JsFunction onClick = JsFunction.withThis((self){
+    JsFunction onClick = JsFunction.withThis((self, e){
       this.onClick?.call();
     });
 
     return Html(
-      tag: "Teniyo.MouseRegion",
+      tag: "Teniyo.MouseEvent",
       children: child.build(),
       attributes: {
         "onEnter": onEnter,
