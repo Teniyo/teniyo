@@ -23,6 +23,7 @@ class Text extends Widget{
   Html build(){
     return Html(
       tag: "span",
+      key: key,
       style: Style({
         "color": color?.toHex() ?? const Color(0xFF000000).toHex(),
         "font-family": fontFamily,

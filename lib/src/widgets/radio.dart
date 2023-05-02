@@ -16,6 +16,7 @@ class Radio extends Widget{
 
     return Html(
       tag: "Teniyo.Radio",
+      key: key,
       attributes: {
         "value": value,
         "onChanged": onChanged,

@@ -11,6 +11,7 @@ class Center extends Widget{
   build(){
     return Html(
       tag: "div",
+      key: key,
       style: Style({
         "display": "flex",
         "align-items": "center",

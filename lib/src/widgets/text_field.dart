@@ -51,6 +51,7 @@ class TextField extends Widget{
 
     return h=Html(
       tag: "TextField",
+      key: key,
       attributes: {
         "onChange": onChanged,
         "@disabled": disabled,

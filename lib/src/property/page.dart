@@ -42,6 +42,9 @@ class Page{
   final Window window;
   final html.Element pageElement;
   final AssetsManager teniyoAssets;
+  String? key;
+
+  Page? parent;
   Widget Function() childBuilder;
   List<Widget Function()> childBuilderHistory = [];
   Function? disposeWidget;
@@ -64,7 +67,12 @@ class Page{
     Html childRendered = child.build();
     disposeWidget = child.dispose = childRendered.dispose;
 
-    JsObject pageResponse = child.build().elementToReact();
+    JsObject pageResponse = childRendered.elementToReact();
+
+    if (parent != null && key != null){
+      reactRoot = reactDom.callMethod('createRoot', [html.querySelector("#$key")]);
+    }
+
     reactRoot.callMethod('render', [pageResponse]);
   }
 
@@ -80,5 +88,21 @@ class Page{
     childBuilderHistory.removeLast();
     childBuilder = childBuilderHistory.last;
     update();
+  }
+  
+  Widget view(Teniyo app){
+    Page page = Page(
+      window: window,
+      pageElement: pageElement,
+      teniyoAssets: teniyoAssets,
+      childBuilder: ()=>app.build(this),
+    );
+    page.parent = this;
+    app.page = page;
+
+    var res = app.build(page);
+    page.key = res.key;
+
+    return res;
   }
 }

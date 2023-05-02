@@ -18,6 +18,7 @@ class ScrollView extends Widget{
     Html? h;
     return h=Html(
       tag: "div",
+      key: key,
       attributes: {
         "onScroll": JsFunction.withThis((self,JsObject arg){
           h!.element!.classes.add("teniyo-scroll");

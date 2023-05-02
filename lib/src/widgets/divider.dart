@@ -18,6 +18,7 @@ class Divider extends Widget{
   build(){
     return Html(
       tag: "Divider",
+      key: key,
       children: child?.build(),
       attributes: {
         "orientation": axis==Axis.horizontal ? "horizontal" : "vertical",

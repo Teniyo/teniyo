@@ -13,6 +13,7 @@ class Padding extends Widget{
   Html build() {
     return Html(
       tag: "div",
+      key: key,
       style: Style({
         "margin": padding.render()
       }),

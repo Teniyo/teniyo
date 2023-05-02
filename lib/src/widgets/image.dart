@@ -18,6 +18,7 @@ class Image extends Widget{
   Html build(){
     return Html(
       tag: 'img',
+      key: key,
       attributes: {
         'src': path,
         'draggable': 'false',

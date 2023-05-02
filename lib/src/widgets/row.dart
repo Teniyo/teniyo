@@ -21,6 +21,7 @@ class Row extends Widget{
   build(){
     return Html(
       tag: "div",
+      key: key,
       style: Style({
         "display": "flex",
         "flex-direction": "row",

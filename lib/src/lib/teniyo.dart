@@ -17,18 +17,12 @@ class Teniyo{
   Teniyo(){
     if (!isWeb) return;
     initApp();
-    initState(page);
+    init(page);
   }
 
   void initApp(){
     teniyoAssetsRoot = reactDom.callMethod('createRoot', [html.querySelector('teniyo-assets')!]);
     assetsManager = AssetsManager(teniyoAssetsRoot);
-
-    html.window.onResize.listen((event) {
-      window.height = html.window.innerHeight?.toDouble() ?? 0;
-      window.width = html.window.innerWidth?.toDouble() ?? 0;
-      setState();
-    });
 
     page = Page(
       window: window,
@@ -41,7 +35,7 @@ class Teniyo{
       event.preventDefault();
     });
   }
-  void initState(Page page){}
+  void init(Page page){}
   void setState([Function()? function]){
     if (function!=null) function();
     page.update();
@@ -72,6 +66,12 @@ class Teniyo{
 
     }
     else{
+      html.window.onResize.listen((event) {
+        window.height = html.window.innerHeight?.toDouble() ?? 0;
+        window.width = html.window.innerWidth?.toDouble() ?? 0;
+        setState();
+      });
+
       page.update();
     }
   }

@@ -30,6 +30,7 @@ class Container extends Widget{
   Html build(){
     return Html(
       tag: "div",
+      key: key,
       style: Style({
         "width": width != null ? "${width}px" : null,
         "height": height != null ? "${height}px" : null,

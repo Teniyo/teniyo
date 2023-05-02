@@ -11,6 +11,7 @@ class Stack extends Widget{
   build(){
     return Html(
       tag: "div",
+      key: key,
       style: Style({
         "position": "relative",
         "height": "100%",

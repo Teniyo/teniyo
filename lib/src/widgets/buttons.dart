@@ -39,6 +39,7 @@ class TextButton extends Widget{
 
     return Html(
       tag: "Button",
+      key: key,
       children: child.build(),
       attributes: {
         "onClick": onClick,
@@ -89,6 +90,7 @@ class ElevatedButton extends Widget{
 
     return Html(
       tag: "Button",
+      key: key,
       children: child.build(),
       attributes: {
         "onClick": onClick,
@@ -152,6 +154,7 @@ class OutlineButton extends Widget{
 
     return Html(
       tag: "Button",
+      key: key,
       children: child.build(),
       attributes: {
         "onClick": onClick,

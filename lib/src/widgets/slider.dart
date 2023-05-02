@@ -30,6 +30,7 @@ class Slider extends Widget{
 
     return Html(
       tag: "Teniyo.Slider",
+      key: key,
       attributes: {
         "value": value,
         "min": min,

@@ -11,6 +11,7 @@ class DropDownMenuItem<T> extends Widget{
   Html build(){
     return Html(
       tag: "MenuItem",
+      key: key,
       attributes: {
         "value": value,
       },

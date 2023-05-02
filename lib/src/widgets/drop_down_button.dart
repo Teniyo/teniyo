@@ -26,6 +26,7 @@ class DropDownButton<T> extends Widget{
 
     return Html(
       tag: "Teniyo.DropDownButtons",
+      key: key,
       attributes: {
         "value": value,
         "label": label,

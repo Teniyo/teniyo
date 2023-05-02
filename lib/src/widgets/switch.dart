@@ -20,6 +20,7 @@ class Switch extends Widget{
 
     return Html(
       tag: "Teniyo.Switch",
+      key: key,
       attributes: {
         "value": value,
         "onChanged": onChanged,

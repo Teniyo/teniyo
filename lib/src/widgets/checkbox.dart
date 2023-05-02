@@ -13,6 +13,7 @@ class Checkbox extends Widget{
   Html build(){
     return Html(
       tag: "Teniyo.Checkbox",
+      key: key,
       attributes: {
         "value": value,
         "onChanged": onChanged,

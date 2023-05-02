@@ -13,6 +13,7 @@ class Spacer extends Widget{
     if (horizontal) {
       return Html(
         tag: 'div',
+        key: key,
         style: Style({
           'flex': '1 0 0'
         }),
@@ -21,6 +22,7 @@ class Spacer extends Widget{
     else if (vertical) {
       return Html(
         tag: 'div',
+        key: key,
         style: Style({
           'flex': '0 1 0'
         }),
@@ -29,6 +31,7 @@ class Spacer extends Widget{
     else if (horizontal && vertical){
       return Html(
         tag: 'div',
+        key: key,
         style: Style({
           'flex': '1'
         }),
@@ -37,6 +40,7 @@ class Spacer extends Widget{
     else {
       return Html(
         tag: 'div',
+        key: key,
         style: Style({
           'flex': '0'
         }),

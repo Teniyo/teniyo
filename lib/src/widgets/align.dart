@@ -16,6 +16,7 @@ class Align extends Widget{
   build(){
     return Html(
       tag: "div",
+      key: key,
       style: Style({
         "height": "100%",
         "width": "100%",
@@ -25,6 +26,7 @@ class Align extends Widget{
       },
       children: Html(
         tag: "div",
+        key: key,
         style: Style({
           "top": alignment==Alignment.topCenter || alignment==Alignment.topLeft || alignment==Alignment.topRight ? "0" : alignment==Alignment.centerLeft || alignment==Alignment.centerRight || alignment==Alignment.center? "50%" : "auto",
           "left": alignment==Alignment.topLeft || alignment==Alignment.centerLeft || alignment==Alignment.bottomLeft ? "0" : alignment==Alignment.topCenter || alignment==Alignment.bottomCenter || alignment==Alignment.center ? "50%" : "auto",

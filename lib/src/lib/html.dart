@@ -1,11 +1,12 @@
+import 'package:teniyo/src/lib/teniyo.dart';
 import 'css.dart';
 import 'extension.dart';
-import 'tools.dart';
 import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart';
 import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart' as html;
 
 class Html{
   final String tag;
+  final String key;
   Map<String, dynamic> attributes = {};
   final dynamic children; // Html | List<Html> | String
   Style style = Style({});
@@ -13,7 +14,7 @@ class Html{
   Map<String,dynamic> data = {};
   List<Function> disposes = [];
 
-  Html({required this.tag, Map<String,dynamic>? attributes, this.children, Style? style}){
+  Html({required this.tag, required this.key, Map<String,dynamic>? attributes, this.children, Style? style} ){
     if(style != null){
       this.style = style;
     }
@@ -21,8 +22,8 @@ class Html{
     if (attributes!=null) this.attributes = attributes;
     else attributes = {};
 
-    if (attributes.containsKey("id")) id = attributes["id"];
-    else this.attributes["id"] = id = cuuid();
+    if (attributes.containsKey("id")) throw TeniyoError(from: "HTML", message: "id is reserved attribute.");
+    attributes["id"] = id = key;
   }
 
   html.Element? get element => html.document.getElementById(id);

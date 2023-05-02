@@ -31,6 +31,7 @@ class MouseEvent extends Widget{
 
     return Html(
       tag: "Teniyo.MouseEvent",
+      key: key,
       children: child.build(),
       attributes: {
         "onEnter": onEnter,
