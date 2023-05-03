@@ -16,13 +16,7 @@ class Stack extends Widget{
         "position": "relative",
         "height": "100%",
       }),
-      children: children.map((e){
-        Html child = e.build();
-
-        child.style.set("position", "absolute");
-          
-        return child;
-      }).toList()
+      children: children.map((e) => e.build()).toList()
     );
   }
 }
