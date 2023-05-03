@@ -1,27 +1,28 @@
-import 'text.dart';
-import 'package:teniyo/src/property/border_radius.dart';
+import 'package:teniyo/src/lib/attribute.dart';
+import 'package:teniyo/src/property/button_style.dart';
 import 'package:teniyo/src/property/color.dart';
-import 'package:teniyo/src/lib/css.dart';
 import 'package:teniyo/src/property/edge_insets.dart';
 import 'package:teniyo/src/lib/html.dart';
 import 'package:teniyo/src/property/widget.dart';
 import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart';
+import 'package:teniyo/src/widgets/text.dart';
 
-class TextButton extends Widget{
+class Button extends Widget{
   final Widget child;
   final Function() onPressed;
-  BorderRadius borderRadius;
   EdgeInsets padding;
   final bool disabled;
+  final ButtonStyle buttonStyle;
 
-  TextButton({
+  Button({
     required this.child,
     required this.onPressed,
-    BorderRadius? borderRadius,
+    ButtonStyle? buttonStyle,
     EdgeInsets? padding,
     this.disabled = false,
-  }): borderRadius = borderRadius??BorderRadius.all(20),
-      padding = padding??EdgeInsets.symmetric(vertical: 6, horizontal: 25);
+  }):
+    buttonStyle = buttonStyle??ButtonStyle(),
+    padding = padding??EdgeInsets.symmetric(vertical: 6, horizontal: 25);
 
   @override
   build(){
@@ -44,34 +45,96 @@ class TextButton extends Widget{
       attributes: {
         "onClick": onClick,
         "variant": "text",
-        "@disabled": disabled,
+        "disabled": Attribute.setKey(disabled),
         "sx": {
           "textTransform": "none",
           "padding": padding.render(),
-          "borderRadius": borderRadius.render(),
+          "borderRadius": buttonStyle.borderRadius.render(),
+          "backgroundColor": buttonStyle.color?.toRgba(),
         }
       },
     );
   }
 }
 
-class ElevatedButton extends Widget{
-  final Widget child;
-  final Function() onPressed;
-  Color? color;
-  BorderRadius borderRadius;
-  EdgeInsets padding;
-  final bool disabled;
+class TextButton extends Button{
+
+  TextButton({
+    required super.child,
+    required super.onPressed,
+    super.buttonStyle,
+    super.padding,
+    super.disabled,
+  });
+  
+  @override
+  build(){
+    JsFunction onClick = JsFunction.withThis((self, args){
+      onPressed();
+    });
+    if (child is Text){
+      if ((child as Text).color==null){
+        if (disabled) (child as Text).color = Colors.grey;
+        else (child as Text).color = Colors.blue;
+      }
+      if ((child as Text).selectable==null)
+        (child as Text).selectable = false;
+    }
+
+    return Html(
+      tag: "Button",
+      key: key,
+      children: child.build(),
+      attributes: {
+        "onClick": onClick,
+        "variant": "text",
+        "disabled": Attribute.setKey(disabled),
+        "sx": {
+          "textTransform": "none",
+          "padding": padding.render(),
+          "borderRadius": buttonStyle.borderRadius.render(),
+          "backgroundColor": Attribute.If(!disabled, buttonStyle.color?.toRgba()),
+          "&:hover": {
+            "backgroundColor": Attribute.If(
+              buttonStyle.hoverColor!=null || buttonStyle.color!=null,
+              Color.lerp(
+                buttonStyle.hoverColor ?? buttonStyle.color??Colors.blue,
+                Colors.white,
+                0.15
+              ).toRgba()
+            )
+          },
+          "&:disabled": {
+            "backgroundColor": Attribute.If(
+              buttonStyle.disabledColor!=null,
+              buttonStyle.disabledColor?.toRgba()
+            )
+          },
+          "& .MuiTouchRipple-root": {
+            "color": buttonStyle.splashColor?.toRgba() ?? Attribute.If(
+              buttonStyle.color!=null,
+              Color.lerp(
+                buttonStyle.color ?? Colors.blue,
+                Colors.white,
+                0.95
+              ).toRgba()
+            )
+          }
+        }
+      },
+    );
+  }
+}
+
+class ElevatedButton extends Button{
 
   ElevatedButton({
-    required this.child,
-    required this.onPressed,
-    this.color,
-    BorderRadius? borderRadius,
-    EdgeInsets? padding,
-    this.disabled = false,
-  }): borderRadius = borderRadius??BorderRadius.all(20),
-      padding = padding??EdgeInsets.symmetric(vertical: 6, horizontal: 25);
+    required super.child,
+    required super.onPressed,
+    super.buttonStyle,
+    super.padding,
+    super.disabled,
+  });
 
   @override
   build(){
@@ -95,17 +158,33 @@ class ElevatedButton extends Widget{
       attributes: {
         "onClick": onClick,
         "variant": "contained",
-        "@disabled": disabled,
+        "disabled": Attribute.setKey(disabled),
         "sx": {
           "textTransform": "none",
           "padding": padding.render(),
-          "borderRadius": borderRadius.render(),
-          "backgroundColor": color?.toHex() ?? Colors.blue.toHex(),
+          "borderRadius": buttonStyle.borderRadius.render(),
+          "backgroundColor": buttonStyle.color?.toRgba(),
           "&:hover": {
-            "backgroundColor": Color.lerp(
-              color??Colors.blue,
-              Colors.black,
-              0.1).toHex()
+            "backgroundColor": Attribute.If(
+              buttonStyle.hoverColor!=null || buttonStyle.color!=null,
+              Color.lerp(
+                buttonStyle.hoverColor ?? buttonStyle.color?? Colors.blue,
+                Colors.black,
+                0.1
+              ).toRgba()
+            )
+          },
+          "&:disabled": {
+            "backgroundColor": Attribute.If(
+              buttonStyle.disabledColor!=null,
+              buttonStyle.disabledColor?.toRgba()
+            )
+          },
+          "& .MuiTouchRipple-root": {
+            "color": Attribute.If(
+              buttonStyle.splashColor!=null,
+              buttonStyle.splashColor?.toRgba()
+            )
           }
         }
       },
@@ -113,23 +192,15 @@ class ElevatedButton extends Widget{
   }
 }
 
-class OutlineButton extends Widget{
-  final Widget child;
-  final Function() onPressed;
-  Color? borderColor;
-  BorderRadius borderRadius;
-  EdgeInsets padding;
-  final bool disabled;
+class OutlineButton extends Button{
 
   OutlineButton({
-    required this.child,
-    required this.onPressed,
-    this.borderColor,
-    BorderRadius? borderRadius,
-    EdgeInsets? padding,
-    this.disabled = false,
-  }): borderRadius = borderRadius??BorderRadius.all(20),
-      padding = padding??EdgeInsets.symmetric(vertical: 6, horizontal: 25);
+    required super.child,
+    required super.onPressed,
+    super.buttonStyle,
+    super.padding,
+    super.disabled,
+  });
 
   @override
   build(){
@@ -147,9 +218,9 @@ class OutlineButton extends Widget{
     }
 
     Color secondaryColor = Color.lerp(
-      borderColor??Colors.blue,
+      buttonStyle.hoverColor ?? buttonStyle.color?? Colors.blue,
       Colors.black,
-      0.1
+      0.15
     );
 
     return Html(
@@ -159,21 +230,41 @@ class OutlineButton extends Widget{
       attributes: {
         "onClick": onClick,
         "variant": "outlined",
-        "@disabled": disabled,
+        "disabled": Attribute.setKey(disabled),
         "sx": {
           "textTransform": "none",
           "padding": padding.render(),
-          "borderRadius": borderRadius.render(),
-          "borderColor": borderColor?.toHex() ?? Colors.blue.toHex(),
+          "borderRadius": buttonStyle.borderRadius.render(),
+          "borderColor": buttonStyle.color?.toRgba() ?? Colors.blue.toRgba(),
           "&:hover": {
-            "borderColor": secondaryColor.toHex(),
-            "backgroundColor": secondaryColor.withAlpha(10).toHex()
+            "borderColor": secondaryColor.toRgba(),
+            "backgroundColor": buttonStyle.hoverColor?.toRgba() ?? Attribute.If(
+              buttonStyle.color!=null,
+              Color.lerp(
+                buttonStyle.color ?? Colors.blue,
+                Colors.white,
+                0.95
+              ).toRgba()
+            )
+          },
+          "&:disabled": {
+            "backgroundColor": Attribute.If(
+              buttonStyle.disabledColor!=null,
+              buttonStyle.disabledColor?.toRgba()
+            )
+          },
+          "& .MuiTouchRipple-root": {
+            "color": Attribute.If(
+              buttonStyle.splashColor!=null || buttonStyle.color != null,
+              Color.lerp(
+                buttonStyle.splashColor ?? buttonStyle.color ?? Colors.blue,
+                Colors.white,
+                0.3
+              ).toRgba()
+            )
           }
         }
       },
-      style: Style({
-        'color': secondaryColor.toHex()
-      })
     );
   }
 }

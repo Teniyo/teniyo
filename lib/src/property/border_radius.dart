@@ -1,11 +1,11 @@
 class BorderRadius{
-  final double? topLeft, topRight, bottomLeft, bottomRight;
+  final double topLeft, topRight, bottomLeft, bottomRight;
 
   BorderRadius({
-    this.topLeft,
-    this.topRight,
-    this.bottomLeft,
-    this.bottomRight,
+    this.topLeft=0,
+    this.topRight=0,
+    this.bottomLeft=0,
+    this.bottomRight=0,
   });
 
   BorderRadius.all(double value)
@@ -15,10 +15,10 @@ class BorderRadius{
       bottomRight = value;
 
   BorderRadius.only({
-    this.topLeft,
-    this.topRight,
-    this.bottomLeft,
-    this.bottomRight,
+    this.topLeft=0,
+    this.topRight=0,
+    this.bottomLeft=0,
+    this.bottomRight=0,
   });
 
   BorderRadius.circular(double value)

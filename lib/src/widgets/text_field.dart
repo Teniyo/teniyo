@@ -1,3 +1,4 @@
+import 'package:teniyo/src/lib/attribute.dart';
 import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart';
 import 'package:teniyo/src/lib/css.dart';
 import 'package:teniyo/src/lib/html.dart';
@@ -54,9 +55,9 @@ class TextField extends Widget{
       key: key,
       attributes: {
         "onChange": onChanged,
-        "@disabled": disabled,
-        "@multiline": multiline,
-        "@error": errorText!=null,
+        "disabled": Attribute.setKey(disabled),
+        "multiline": Attribute.setKey(multiline),
+        "error": Attribute.setKey(errorText!=null),
         "maxRows": maxLines,
         "minRows": minLines,
         "variant": variant==TextFieldVariant.filled?"filled":

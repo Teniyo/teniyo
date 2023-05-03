@@ -18,9 +18,9 @@ class Checkbox extends Widget{
         "value": value,
         "onChanged": onChanged,
         "sx": {
-          "color" : borderColor?.toHex(),
+          "color" : borderColor?.toRgba(),
           "&.Mui-checked": {
-            "color": color?.toHex(),
+            "color": color?.toRgba(),
           },
         }
       }

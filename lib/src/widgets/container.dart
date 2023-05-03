@@ -34,7 +34,7 @@ class Container extends Widget{
       style: Style({
         "width": width != null ? "${width}px" : null,
         "height": height != null ? "${height}px" : null,
-        "background-color": color != null ? color!.toHex() : null,
+        "background-color": color != null ? color!.toRgba() : null,
         "padding": padding != null ? padding!.render() : null,
         "margin": margin != null ? margin!.render() : null,
         "border-radius": borderRadius != null ? borderRadius!.render() : null,

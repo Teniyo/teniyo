@@ -1,3 +1,4 @@
+import 'package:teniyo/src/lib/attribute.dart';
 import 'package:teniyo/src/lib/teniyo.dart';
 import 'css.dart';
 import 'extension.dart';
@@ -95,12 +96,32 @@ class Html{
     // attributes.changeKey("onclick", "onClick");
     attributes["style"] = style.renderForReact();
     
-    Map.from(attributes).forEach((key, value) {
-      if (key[0]=='@'){
-        if (value) attributes[key.substring(1)] = '-';
-        attributes.remove(key);
+    mapForeachFunction (key, value, Map attributes){
+      if (value is Map){
+        attributes[key] = {};
+        value.forEach(
+          (k, v) => attributes[key].addAll(mapForeachFunction(k, v, {}))
+        );
       }
-    });
+      else if (value is Attribute){
+        if (value.type == AttributeType.If){
+          if (value.condition) attributes[key] = value.value;
+          else if (value.elseValue != null) attributes[key] = value.elseValue;
+          else attributes.remove(key);
+        }
+        else if (value.type == AttributeType.setKey){
+          if (value.condition) attributes[key] = '-';
+          else attributes.remove(key);
+        }
+      }
+      else{
+        attributes[key] = value;
+      }
+      return attributes;
+    }
+
+    Map.from(attributes).forEach((k,v)=>mapForeachFunction(k,v,attributes));
+    
     JsObject attrArray = JsObject.jsify(attributes);
 
     dynamic tagForRender;

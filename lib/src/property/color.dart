@@ -97,6 +97,10 @@ class Color {
 
     return "#$red$green$blue$alpha";
   }
+
+  String toRgba() {
+    return "rgba($red, $green, $blue, $opacity)";
+  }
 }
 
 class MaterialColor extends Color{

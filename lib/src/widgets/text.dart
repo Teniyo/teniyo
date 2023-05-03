@@ -25,7 +25,7 @@ class Text extends Widget{
       tag: "span",
       key: key,
       style: Style({
-        "color": color?.toHex() ?? const Color(0xFF000000).toHex(),
+        "color": color?.toRgba() ?? const Color(0xFF000000).toRgba(),
         "font-family": fontFamily,
         "font-size": fontSize!=null?"${fontSize}px":"16px", 
         "user-select": selectable==false?"none":"auto",
