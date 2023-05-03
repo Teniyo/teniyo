@@ -1,4 +1,4 @@
-import 'package:teniyo/src/lib/attribute.dart';
+import 'package:teniyo/src/property/attribute.dart';
 import 'package:teniyo/src/lib/not_web.dart' if (dart.library.html) 'package:teniyo/src/lib/is_web.dart';
 import 'package:teniyo/src/lib/css.dart';
 import 'package:teniyo/src/lib/html.dart';

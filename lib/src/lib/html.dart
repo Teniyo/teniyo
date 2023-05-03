@@ -1,4 +1,4 @@
-import 'package:teniyo/src/lib/attribute.dart';
+import 'package:teniyo/src/property/attribute.dart';
 import 'package:teniyo/src/lib/teniyo.dart';
 import 'css.dart';
 import 'extension.dart';

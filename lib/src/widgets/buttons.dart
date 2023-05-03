@@ -1,4 +1,4 @@
-import 'package:teniyo/src/lib/attribute.dart';
+import 'package:teniyo/src/property/attribute.dart';
 import 'package:teniyo/src/property/button_style.dart';
 import 'package:teniyo/src/property/color.dart';
 import 'package:teniyo/src/property/edge_insets.dart';
