@@ -15,6 +15,7 @@ export 'src/property/text_field_variant.dart';
 export 'src/property/edge_insets.dart';
 export 'src/property/widget.dart';
 export 'src/property/main_axis_size.dart';
+export 'src/property/button_style.dart';
 export 'src/widgets/mouse_event.dart';
 export 'src/lib/css.dart';
 export 'src/lib/extension.dart';
