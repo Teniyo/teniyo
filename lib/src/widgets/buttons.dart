@@ -95,10 +95,10 @@ class TextButton extends Button{
           "borderRadius": buttonStyle.borderRadius.render(),
           "backgroundColor": Attribute.If(!disabled, buttonStyle.color?.toRgba()),
           "&:hover": {
-            "backgroundColor": Attribute.If(
-              buttonStyle.hoverColor!=null || buttonStyle.color!=null,
+            "backgroundColor": buttonStyle.hoverColor?.toRgba() ?? Attribute.If(
+              buttonStyle.color != null,
               Color.lerp(
-                buttonStyle.hoverColor ?? buttonStyle.color??Colors.blue,
+                buttonStyle.color ?? Colors.blue,
                 Colors.white,
                 0.15
               ).toRgba()
@@ -165,10 +165,10 @@ class ElevatedButton extends Button{
           "borderRadius": buttonStyle.borderRadius.render(),
           "backgroundColor": buttonStyle.color?.toRgba(),
           "&:hover": {
-            "backgroundColor": Attribute.If(
-              buttonStyle.hoverColor!=null || buttonStyle.color!=null,
+            "backgroundColor": buttonStyle.hoverColor?.toRgba() ?? Attribute.If(
+              buttonStyle.color != null,
               Color.lerp(
-                buttonStyle.hoverColor ?? buttonStyle.color?? Colors.blue,
+                buttonStyle.color ?? Colors.blue,
                 Colors.black,
                 0.1
               ).toRgba()
