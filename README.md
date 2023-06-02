@@ -54,3 +54,27 @@ class App extends Teniyo {
 ## Output
 
 <img src="https://github.com/Teniyo/teniyo/raw/main/doc/simple-output.webp" width=250>
+
+## Roadmap
+
+- [ ] Basic widgets
+  - [x] Buttons
+  - [x] Checkbox
+  - [x] Container
+  - [x] Devider
+  - [x] DropDown
+  - [ ] Icon
+  - [x] Image
+  - [ ] Layouts
+    - [x] Column
+    - [ ] Grid
+    - [x] Row
+    - [x] Stack
+  - [x] MouseEvent
+  - [ ] ProgressBars
+  - [x] ScrollView
+  - [x] Slider
+  - [x] Snackbar
+  - [x] Switch
+  - [x] TextField
+  - [x] Text
