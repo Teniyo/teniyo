@@ -1,4 +1,7 @@
+import 'package:teniyo/src/lib/jsx.dart';
 import 'package:teniyo/src/lib/teniyo.dart';
+import 'package:teniyo/src/lib/tools.dart';
+import 'package:teniyo/src/widgets/snackbar.dart';
 import 'assets_manager.dart';
 import 'package:teniyo/src/lib/html.dart';
 import 'widget.dart';
@@ -42,7 +45,7 @@ class Page{
   final Window window;
   final html.Element pageElement;
   final AssetsManager teniyoAssets;
-  String? key;
+  String key = cuuid();
 
   Page? parent;
   Widget Function() childBuilder;
@@ -56,7 +59,10 @@ class Page{
   
   Page({required this.window, required this.pageElement, required this.teniyoAssets, required this.childBuilder}){
     childBuilderHistory.add(childBuilder);
-    reactRoot = reactDom.callMethod('createRoot', [teniyoTag]);
+    var pageElement = Element.tag("page");
+    pageElement.attributes["id"] = key;
+    html.querySelector("teniyo")!.append(pageElement);
+    reactRoot = reactDom.callMethod('createRoot', [pageElement]);
   }
 
   void update(){
@@ -69,7 +75,7 @@ class Page{
 
     JsObject pageResponse = childRendered.elementToReact();
 
-    if (parent != null && key != null){
+    if (parent != null){
       reactRoot = reactDom.callMethod('createRoot', [html.querySelector("#$key")]);
     }
 
@@ -104,5 +110,16 @@ class Page{
     page.key = res.key;
 
     return res;
+  }
+
+  void showSnackBar(Snackbar snackbar){
+    var snackbarElement = html.querySelector("#$key snackbar");
+
+    if (snackbarElement == null){
+      snackbarElement = Element.tag("snackbar");
+      html.querySelector("#$key")!.append(snackbarElement);
+    }
+
+    Jsx.fromHtml(snackbar.build()).render("#$key snackbar");
   }
 }
